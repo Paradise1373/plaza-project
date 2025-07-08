@@ -12,10 +12,12 @@ export const encryptJWT = async (payload) => {
 
 export const decryptJWT = async (session) => {
   try {
-    const { payload } = await jwtVerify(session, key, (algorithm = ['HS256']))
+    const { payload } = await jwtVerify(session, key, {
+      algorithms: ['HS256'],
+    })
 
     return payload
   } catch (error) {
-    console.log(null)
+    return null
   }
 }
