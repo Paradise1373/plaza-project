@@ -1,10 +1,14 @@
 import { useEffect } from 'react'
-import { getCookie, setCookie } from '../utils/helpers/cookies'
+import { RouterProvider } from 'react-router-dom'
+
+import { getCookie } from '../utils/helpers/cookies'
+import router from '../constants/router'
 
 import useStore from '../store'
 
 const Authorize = ({ children }) => {
   const { setState } = useStore()
+
   useEffect(() => {
     const readCookies = async () => {
       const result = await getCookie('credential')
@@ -18,7 +22,11 @@ const Authorize = ({ children }) => {
 }
 
 const Providers = ({ children }) => {
-  return <Authorize>{children}</Authorize>
+  return (
+    <RouterProvider router={router}>
+      <Authorize>{children}</Authorize>
+    </RouterProvider>
+  )
 }
 
 export default Providers
