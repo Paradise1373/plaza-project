@@ -3,7 +3,6 @@ import { RouterProvider } from 'react-router-dom'
 
 import { getCookie } from '../utils/helpers/cookies'
 import router from '../constants/router'
-
 import useStore from '../store'
 
 const Authorize = ({ children }) => {
