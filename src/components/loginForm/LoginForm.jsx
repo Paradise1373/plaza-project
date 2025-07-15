@@ -39,7 +39,7 @@ const LoginForm = () => {
       setState({ access_token: access_token, refresh_token: refresh_token })
 
       toast.success('logged in successfully!, redirecting to dashboard...')
-      setTimeout(() => navigate('/dashboard'), 1000)
+      setTimeout(() => navigate('/dashboard'), 3000)
     } else {
       toast.error('Invalid Username Password!')
     }
