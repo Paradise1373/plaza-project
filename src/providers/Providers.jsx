@@ -1,8 +1,7 @@
 import { useEffect } from 'react'
-import { RouterProvider } from 'react-router-dom'
+import { ToastContainer } from 'react-toastify'
 
 import { getCookie } from '../utils/helpers/cookies'
-import router from '../constants/router'
 import useStore from '../store'
 
 const Authorize = ({ children }) => {
@@ -22,9 +21,10 @@ const Authorize = ({ children }) => {
 
 const Providers = ({ children }) => {
   return (
-    <RouterProvider router={router}>
-      <Authorize>{children}</Authorize>
-    </RouterProvider>
+    <Authorize>
+      {children}
+      <ToastContainer />
+    </Authorize>
   )
 }
 
