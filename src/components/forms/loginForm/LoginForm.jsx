@@ -5,9 +5,9 @@ import { toast } from 'react-toastify'
 import { zodResolver } from '@hookform/resolvers/zod'
 import * as z from 'zod'
 
-import loginApi from '../../utils/apis/auth/loginApi'
-import { setCookie } from '../../utils/helpers/cookies'
-import useStore from '../../store'
+import loginApi from '../../../utils/apis/auth/loginApi'
+import { setCookie } from '../../../utils/helpers/cookies'
+import useStore from '../../../store'
 
 const loginSchema = z.object({
   email: z
