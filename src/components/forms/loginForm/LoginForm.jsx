@@ -28,7 +28,7 @@ const LoginForm = () => {
   const navigate = useNavigate()
 
   useEffect(() => {
-    if (!access_token) {
+    if (access_token != null && access_token != undefined) {
       toast.warn('you are already logged in!')
       navigate('/dashboard')
     }
