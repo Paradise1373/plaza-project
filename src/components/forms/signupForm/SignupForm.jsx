@@ -1,13 +1,12 @@
+import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import * as z from 'zod'
 import { toast } from 'react-toastify'
 
 import { zodResolver } from '@hookform/resolvers/zod'
-import * as z from 'zod'
-
-import loginApi from '../../../utils/apis/auth/loginApi'
-import { setCookie } from '../../../utils/helpers/cookies'
 import useStore from '../../../store'
+import createUsersApi from '../../../utils/apis/users/CreateUsersApi'
 
 const loginSchema = z
   .object({
@@ -20,19 +19,34 @@ const loginSchema = z
     avatar: z.string(),
     gender: z.string(),
   })
-  .refine((data) => console.log(data))
+  .refine(
+    (data) =>
+      (data.avatar = `https://avatar.iran.liara.run/public/${data.gender}`)
+  )
 
 const SignupForm = () => {
-  const { setState } = useStore()
+  const { access_token } = useStore()
+  const navigate = useNavigate()
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
   } = useForm({ resolver: zodResolver(loginSchema) })
-  const navigate = useNavigate()
+
+  useEffect(() => {
+    if (!access_token) {
+      toast.warn('you are already logged in!')
+      navigate('/dashboard')
+    }
+  }, [])
 
   const handleSignup = async (data) => {
-    console.log(data)
+    const result = await createUsersApi(data)
+
+    if (result?.status === 200 || result?.status === 201) {
+      toast.success('register successfully, redirecting to login ...')
+      setTimeout(() => navigate('/login'), 2000)
+    } else toast.error('something goes wrong, please try later!')
   }
 
   return (
@@ -108,8 +122,11 @@ const SignupForm = () => {
           className='w-[100%] bg-slate-700 text-slate-50 rounded-md px-4 py-2'
           type='submit'
         >
-          {isSubmitting ? 'Logging...' : 'Login'}
+          {isSubmitting ? 'Registering...' : 'Register'}
         </button>
+        <Link className='text-center underline text-xs' to='/login'>
+          have a account? log in
+        </Link>
       </fieldset>
     </form>
   )

@@ -1,5 +1,6 @@
+import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
-import { useNavigate } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 
 import { zodResolver } from '@hookform/resolvers/zod'
@@ -18,13 +19,20 @@ const loginSchema = z.object({
 })
 
 const LoginForm = () => {
-  const { setState } = useStore()
+  const { setState, access_token } = useStore()
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
   } = useForm({ resolver: zodResolver(loginSchema) })
   const navigate = useNavigate()
+
+  useEffect(() => {
+    if (!access_token) {
+      toast.warn('you are already logged in!')
+      navigate('/dashboard')
+    }
+  }, [])
 
   const handleLogin = async (data) => {
     const result = await loginApi(data)
@@ -83,6 +91,9 @@ const LoginForm = () => {
         >
           {isSubmitting ? 'Logging...' : 'Login'}
         </button>
+        <Link className='text-center underline text-xs' to='/signup'>
+          don't have a account? sign up
+        </Link>
       </fieldset>
     </form>
   )
