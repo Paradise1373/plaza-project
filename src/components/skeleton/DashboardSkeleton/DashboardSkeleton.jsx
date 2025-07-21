@@ -5,7 +5,7 @@ const DashboardSkeleton = () => {
   return (
     <div>
       <ListItem alignItems='flex-start'>
-        <div className='w-[10rem] me-6 rounded-full animate-pulse bg-slate-400 h-[10rem]'></div>
+        <div className='lg:w-[10rem] w-[5.5rem] me-6 rounded-full animate-pulse bg-slate-400 lg:h-[10rem] h-[5.5rem]'></div>
         <ListItemText
           primary={
             <div className='bg-slate-400 rounded-lg animate-pulse w-[15rem] h-[1.5rem]'></div>

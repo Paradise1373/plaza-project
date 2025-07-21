@@ -9,6 +9,7 @@ import Typography from '@mui/material/Typography'
 import useStore from '../../store'
 import getUserInfoWithTokenApi from '../../utils/apis/users/getUserInfoWithTokenApi'
 import DashboardSkeleton from '../../components/skeleton/DashboardSkeleton/DashboardSkeleton'
+import ErrorOnFetchApi from '../../components/common/ErrorOnFetchApi/ErrorOnFetchApi'
 
 const Dashboard = () => {
   const { access_token } = useStore()
@@ -25,7 +26,7 @@ const Dashboard = () => {
       {access_token !== null && access_token !== undefined ? (
         <>
           {isPending && <DashboardSkeleton />}
-          {error && <p>Error occurred!</p>}
+          {error && <ErrorOnFetchApi />}
           {data && (
             <ListItem alignItems='flex-start'>
               <div className='w-[10rem] pe-4'>
