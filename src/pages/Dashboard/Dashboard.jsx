@@ -8,6 +8,7 @@ import Typography from '@mui/material/Typography'
 
 import useStore from '../../store'
 import getUserInfoWithTokenApi from '../../utils/apis/users/getUserInfoWithTokenApi'
+import DashboardSkeleton from '../../components/skeleton/DashboardSkeleton/DashboardSkeleton'
 
 const Dashboard = () => {
   const { access_token } = useStore()
@@ -18,13 +19,12 @@ const Dashboard = () => {
     queryFn: () => getUserInfoWithTokenApi(),
     enabled: access_token !== null && access_token !== undefined,
   })
-  console.log(data)
 
   return (
     <div>
       {access_token !== null && access_token !== undefined ? (
         <>
-          {isPending && <p>Loading data...</p>}
+          {isPending && <DashboardSkeleton />}
           {error && <p>Error occurred!</p>}
           {data && (
             <ListItem alignItems='flex-start'>
@@ -74,7 +74,10 @@ const Dashboard = () => {
           )}
         </>
       ) : (
-        <Link to='/login' className='underline'>
+        <Link
+          to='/login'
+          className='underline font-stretch-50% p-[2rem] text-xl'
+        >
           Only Logged in Users Can Access
         </Link>
       )}
