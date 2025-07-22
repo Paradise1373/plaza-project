@@ -12,7 +12,6 @@ const Authorize = ({ children }) => {
     const readCookies = async () => {
       const result = await getCookie('credential')
       setState(result)
-      console.log(result)
     }
     readCookies()
   }, [])

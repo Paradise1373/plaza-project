@@ -1,5 +1,11 @@
+import Header from '../../components/common/Header'
+
 const Root = () => {
-  return <div>Root</div>
+  return (
+    <div>
+      <Header />
+    </div>
+  )
 }
 
 export default Root
