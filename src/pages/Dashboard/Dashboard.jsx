@@ -1,16 +1,17 @@
-import { useEffect } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { toast } from 'react-toastify'
 import { useQuery } from '@tanstack/react-query'
+import useStore from '../../store'
 import ListItem from '@mui/material/ListItem'
 import ListItemText from '@mui/material/ListItemText'
 import Typography from '@mui/material/Typography'
 import { removeCookie } from '../../utils/helpers/cookies'
+import LogoutIcon from '@mui/icons-material/Logout'
 
-import useStore from '../../store'
 import getUserInfoWithTokenApi from '../../utils/apis/users/getUserInfoWithTokenApi'
 import DashboardSkeleton from '../../components/skeleton/DashboardSkeleton/DashboardSkeleton'
 import ErrorOnFetchApi from '../../components/common/ErrorOnFetchApi/ErrorOnFetchApi'
+import Header from '../../components/common/Header/Header'
 
 const Dashboard = () => {
   const { access_token, removeState } = useStore()
@@ -32,6 +33,7 @@ const Dashboard = () => {
 
   return (
     <div>
+      <Header />
       {access_token !== null && access_token !== undefined ? (
         <>
           {isPending && <DashboardSkeleton />}
@@ -40,7 +42,11 @@ const Dashboard = () => {
             <>
               <ListItem alignItems='flex-start'>
                 <div className='w-[10rem] pe-4'>
-                  <img alt='profile image' src={data?.data?.avatar} />
+                  <img
+                    alt='profile image'
+                    className='rounded-full object-fit-cover'
+                    src={data?.data?.avatar}
+                  />
                 </div>
                 <ListItemText
                   primary={
@@ -82,21 +88,26 @@ const Dashboard = () => {
                   }
                 />
               </ListItem>
-              <button
-                onClick={handleLogout}
-                className='text-slate-50 rounded-md shadow-lg bg-red-500 px-4 py-2 ms-4'
-              >
-                Logout
-              </button>
+              <>
+                <button
+                  onClick={handleLogout}
+                  className='flex items-center gap-2 text-slate-50 rounded-md shadow-lg bg-red-500 px-4 py-2 ms-4'
+                >
+                  <span>Logout</span>
+                  <LogoutIcon />
+                </button>
+              </>
             </>
           )}
         </>
       ) : (
         <Link
+          className='underline font-stretch-50% flex items-center justify-center p-[2rem] text-xl'
           to='/login'
-          className='underline font-stretch-50% p-[2rem] text-xl'
         >
-          Only Logged in Users Can Access
+          <p className='bg-slate-500 text-slate-50 capitalize px-4 py-2 my-16 rounded-md text-xl'>
+            Only logged in users can access to dashboard ...
+          </p>
         </Link>
       )}
     </div>
