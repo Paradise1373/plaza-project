@@ -1,4 +1,4 @@
-import { apiClient } from '../../../constants/axios.interceptor'
+import apiClient from '../../../constants/axios.interceptor'
 
 export const loginApi = async (data) => {
   try {
