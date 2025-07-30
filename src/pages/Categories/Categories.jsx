@@ -27,12 +27,10 @@ const Categories = () => {
               alt=''
             />
             <p className='font-bold'>{data?.data?.name}</p>
-            <div className='mt-16'>
-              <ProductsByCategoryGrid id={id} />
-            </div>
           </>
         )}
       </div>
+      {data && <ProductsByCategoryGrid id={id} />}
     </>
   )
 }
