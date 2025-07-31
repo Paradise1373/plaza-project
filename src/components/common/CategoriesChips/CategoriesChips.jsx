@@ -4,8 +4,9 @@ import Avatar from '@mui/material/Avatar'
 import Chip from '@mui/material/Chip'
 
 import { getCategoriesApi } from '../../../utils/apis/categories/getCategoriesApi'
-import CategoriesChipsSkeleton from '../../skeleton/CategoriesChipsSkeleton'
+
 import ErrorOnFetchApi from '../ErrorOnFetchApi'
+import CategoriesChipsSkeleton from '../../skeleton/CategoriesChipsSkeleton'
 
 const CategoriesChips = () => {
   const { isPending, error, data } = useQuery({

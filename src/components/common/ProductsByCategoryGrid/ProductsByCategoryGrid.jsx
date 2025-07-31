@@ -1,6 +1,8 @@
 import { useQuery } from '@tanstack/react-query'
+import { Link } from 'react-router-dom'
 
 import { getProductsByCategory } from '../../../utils/apis/products/getProductsByCategory'
+
 import ProductGridSkeleton from '../../skeleton/ProductGridSkeleton/ProductGridSkeleton'
 
 const ProductsByCategoryGrid = ({ id }) => {
@@ -15,7 +17,8 @@ const ProductsByCategoryGrid = ({ id }) => {
         Array.from('123456').map((i) => <ProductGridSkeleton key={i} />)}
       {data &&
         data?.data?.map((product) => (
-          <div
+          <Link
+            to={`/products/${product?.id}`}
             key={product?.id}
             className='flex flex-col rounded-xl shadow-lg gap-4 items-center justify-center pb-2 w-5/12 lg:w-3/12'
           >
@@ -25,7 +28,7 @@ const ProductsByCategoryGrid = ({ id }) => {
             />
             <p>{product?.title}</p>
             <p>{product?.price}$</p>
-          </div>
+          </Link>
         ))}
     </div>
   )

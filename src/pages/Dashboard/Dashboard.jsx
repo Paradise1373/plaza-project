@@ -1,17 +1,21 @@
 import { Link, useNavigate } from 'react-router-dom'
-import { toast } from 'react-toastify'
 import { useQuery } from '@tanstack/react-query'
-import useStore from '../../store'
+import { toast } from 'react-toastify'
+
 import ListItem from '@mui/material/ListItem'
 import ListItemText from '@mui/material/ListItemText'
 import Typography from '@mui/material/Typography'
-import { removeCookie } from '../../utils/helpers/cookies'
 import LogoutIcon from '@mui/icons-material/Logout'
 
-import getUserInfoWithTokenApi from '../../utils/apis/users/getUserInfoWithTokenApi'
-import DashboardSkeleton from '../../components/skeleton/DashboardSkeleton/DashboardSkeleton'
-import ErrorOnFetchApi from '../../components/common/ErrorOnFetchApi/ErrorOnFetchApi'
+import { getUserInfoWithTokenApi } from '../../utils/apis/users/getUserInfoWithTokenApi'
+import { removeCookie } from '../../utils/helpers/cookies'
+
+import useStore from '../../store'
+
 import Header from '../../components/common/Header/Header'
+import ErrorOnFetchApi from '../../components/common/ErrorOnFetchApi/ErrorOnFetchApi'
+import DashboardSkeleton from '../../components/skeleton/DashboardSkeleton/DashboardSkeleton'
+
 
 const Dashboard = () => {
   const { access_token, removeState } = useStore()

@@ -1,11 +1,13 @@
 import { useParams } from 'react-router-dom'
 import { useQuery } from '@tanstack/react-query'
 
+import { getCategoryByIdApi } from '../../utils/apis/categories/getCategoryByIdApi'
+
 import Header from '../../components/common/Header'
-import getCategoryByIdApi from '../../utils/apis/categories/getCategoryByIdApi'
 import CategoryInfoSkeleton from '../../components/skeleton/CategoryInfoSkeleton'
 import ErrorOnFetchApi from '../../components/common/ErrorOnFetchApi/ErrorOnFetchApi'
 import ProductsByCategoryGrid from '../../components/common/ProductsByCategoryGrid/ProductsByCategoryGrid'
+
 const Categories = () => {
   const { id } = useParams() || ''
 
