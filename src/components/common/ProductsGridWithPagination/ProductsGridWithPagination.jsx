@@ -1,15 +1,22 @@
+import { useState } from 'react'
 import { useQuery } from '@tanstack/react-query'
 import { Link } from 'react-router-dom'
 
-import { getProductsByCategory } from '../../../utils/apis/products/getProductsByCategory'
- 
+import Pagination from '@mui/material/Pagination'
+
+import { getProductsApi } from '../../../utils/apis/products/getProductsApi'
+
 import ProductGridSkeleton from '../../skeleton/ProductGridSkeleton/ProductGridSkeleton'
 import ErrorOnFetchApi from '../ErrorOnFetchApi'
 
-const ProductsByCategoryGrid = ({ id }) => {
+const ProductsGridWithPagination = () => {
+  const [currentPage, setCurrentPage] = useState(1)
+  const limit = 9
+  const total = 200 // backend in response should provide total pages, total items and ...
+
   const { isPending, error, data } = useQuery({
-    queryKey: ['productsByCategory'],
-    queryFn: () => getProductsByCategory(id),
+    queryKey: ['products', currentPage],
+    queryFn: () => getProductsApi((currentPage - 1) * limit, limit),
   })
 
   return (
@@ -32,8 +39,19 @@ const ProductsByCategoryGrid = ({ id }) => {
             <p>{product?.price}$</p>
           </Link>
         ))}
+      {data && (
+        <div className='my-8'>
+          <Pagination
+            onChange={(event, value) => setCurrentPage(value)}
+            size='large'
+            count={Math.ceil(total / limit)}
+            defaultPage={currentPage}
+            boundaryCount={2}
+          />
+        </div>
+      )}
     </div>
   )
 }
 
-export default ProductsByCategoryGrid
+export default ProductsGridWithPagination

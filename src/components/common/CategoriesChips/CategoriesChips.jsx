@@ -5,8 +5,8 @@ import Chip from '@mui/material/Chip'
 
 import { getCategoriesApi } from '../../../utils/apis/categories/getCategoriesApi'
 
-import ErrorOnFetchApi from '../ErrorOnFetchApi'
 import CategoriesChipsSkeleton from '../../skeleton/CategoriesChipsSkeleton'
+import ErrorOnFetchApi from '../ErrorOnFetchApi'
 
 const CategoriesChips = () => {
   const { isPending, error, data } = useQuery({
