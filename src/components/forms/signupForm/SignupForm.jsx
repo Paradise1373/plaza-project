@@ -6,9 +6,9 @@ import { toast } from 'react-toastify'
 
 import { zodResolver } from '@hookform/resolvers/zod'
 
-import useStore from '../../../store'
+import { createUsersApi } from '../../../utils/apis/users/createUsersApi'
 
-import createUsersApi from '../../../utils/apis/users/createUsersApi'
+import useStore from '../../../store'
 
 const loginSchema = z
   .object({
