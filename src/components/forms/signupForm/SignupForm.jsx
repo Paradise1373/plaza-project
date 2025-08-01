@@ -1,12 +1,14 @@
 import { useEffect } from 'react'
-import { useForm } from 'react-hook-form'
 import { Link, useNavigate } from 'react-router-dom'
+import { useForm } from 'react-hook-form'
 import * as z from 'zod'
 import { toast } from 'react-toastify'
 
 import { zodResolver } from '@hookform/resolvers/zod'
+
 import useStore from '../../../store'
-import createUsersApi from '../../../utils/apis/users/CreateUsersApi'
+
+import createUsersApi from '../../../utils/apis/users/createUsersApi'
 
 const loginSchema = z
   .object({
