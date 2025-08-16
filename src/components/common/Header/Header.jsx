@@ -8,6 +8,7 @@ import useStore from '../../../store'
 
 const Header = () => {
   const { access_token } = useStore()
+  
   return (
     <header className='px-4 my-4'>
       <div className='flex items-center rounded-lg shadow-lg justify-between text-slate-100 bg-slate-600 p-4'>
