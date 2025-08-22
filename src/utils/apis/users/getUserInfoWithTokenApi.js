@@ -7,5 +7,3 @@ export const getUserInfoWithTokenApi = async (data) => {
     return error
   }
 }
-
-export default getUserInfoWithTokenApi

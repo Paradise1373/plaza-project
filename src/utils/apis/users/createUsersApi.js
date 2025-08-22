@@ -7,5 +7,3 @@ export const createUsersApi = async (data) => {
     return error
   }
 }
-
-export default createUsersApi

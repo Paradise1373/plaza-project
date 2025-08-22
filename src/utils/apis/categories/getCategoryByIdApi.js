@@ -7,5 +7,3 @@ export const getCategoryByIdApi = async (id) => {
     return error
   }
 }
-
-export default getCategoryByIdApi

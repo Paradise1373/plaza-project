@@ -16,7 +16,6 @@ import Header from '../../components/common/Header/Header'
 import ErrorOnFetchApi from '../../components/common/ErrorOnFetchApi/ErrorOnFetchApi'
 import DashboardSkeleton from '../../components/skeleton/DashboardSkeleton/DashboardSkeleton'
 
-
 const Dashboard = () => {
   const { access_token, removeState } = useStore()
   const navigate = useNavigate()
